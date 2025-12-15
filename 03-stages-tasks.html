@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lead Stages & Task Distribution - Triples Energy V2.0</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #7950f2 0%, #7048e8 100%);
+            color: white;
+            padding: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .nav-breadcrumb {
+            background: #f8f9fa;
+            padding: 15px 40px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .nav-breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .nav-breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 2em;
+            color: #1e3c72;
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #7950f2;
+            font-weight: 600;
+        }
+
+        .flow-diagram {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 3px solid #7950f2;
+            border-radius: 15px;
+            padding: 40px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .flow-diagram pre {
+            font-family: 'Courier New', monospace;
+            font-size: 1em;
+            color: #212529;
+            line-height: 2;
+            display: inline-block;
+            text-align: left;
+        }
+
+        .task-track {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .task-track-header {
+            background: linear-gradient(135deg, #7950f2, #7048e8);
+            color: white;
+            padding: 20px 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+
+        .task-track-header h3 {
+            font-size: 1.8em;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .task-track-header .objective {
+            opacity: 0.9;
+            font-size: 1.05em;
+        }
+
+        .task-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border-left: 4px solid #7950f2;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .task-card h4 {
+            color: #7950f2;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .task-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .task-info-item {
+            display: flex;
+            gap: 8px;
+        }
+
+        .task-info-item .label {
+            font-weight: 600;
+            color: #495057;
+        }
+
+        .task-info-item .value {
+            color: #212529;
+        }
+
+        .task-script {
+            background: #e7f5ff;
+            color: #1971c2;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-size: 1.05em;
+        }
+
+        .stage-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .stage-card h4 {
+            color: #7950f2;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .stage-card .stage-info {
+            margin: 10px 0;
+        }
+
+        .stage-card .stage-info strong {
+            color: #495057;
+            display: inline-block;
+            width: 120px;
+        }
+
+        .stage-actions {
+            background: #d3f9d8;
+            border: 2px solid #8ce99a;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .stage-actions h5 {
+            color: #2b8a3e;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .stage-actions ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .stage-actions li {
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+            color: #2f9e44;
+        }
+
+        .stage-actions li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            padding: 30px 40px;
+            background: #f8f9fa;
+            border-top: 2px solid #e9ecef;
+        }
+
+        .nav-button {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔄 Lead Stages & Task Distribution</h1>
+            <div class="subtitle">Section 03: Complete Stage Flow & Automated Task Creation</div>
+        </div>
+
+        <div class="nav-breadcrumb">
+            <a href="index.html">← Back to Index</a> | <a href="02-qualification-scoring.html">← Previous: Qualification & Scoring</a>
+        </div>
+
+        <div class="content">
+            <!-- Stage Flow -->
+            <div class="section">
+                <h2 class="section-title">Stage Flow Diagram</h2>
+                
+                <div class="flow-diagram">
+                    <pre>
+┌─────────┐
+│   NEW   │
+└────┬────┘
+     │ (Auto: Within 5 mins)
+     ▼
+┌──────────────────────────┐
+│ 5-DAY ATTEMPT IN PROGRESS│
+└────────────┬─────────────┘
+             │ (Connected) or (Engaged via WhatsApp)
+             ▼
+     ┌──────────────┐
+     │  CONTACTED   │
+     └──────┬───────┘
+            │ (Qualification done)
+            ▼
+┌────────────────────────────┐
+│ QUALIFIED - HOT/WARM/COLD  │
+└────────────┬───────────────┘
+             │ (Consultation booked)
+             ▼
+    ┌──────────────────────┐
+    │ CONSULTATION SCHEDULED│
+    └──────────┬───────────┘
+               │ (Consultation done)
+               ▼
+      ┌──────────────────┐
+      │ SITE VISIT SCHEDULED│
+      └─────────┬─────────┘
+                │ (Site visit done)
+                ▼
+        ┌───────────────┐
+        │ PROPOSAL SENT │
+        └───────┬───────┘
+                │ (Customer interested)
+                ▼
+        ┌─────────────┐
+        │ NEGOTIATION │
+        └──────┬──────┘
+               │ (Advance received)
+               ▼
+    ┌───────────────────────┐
+    │ WON - HANDOVER TO OPS │
+    └───────────────────────┘
+
+Side exits at any stage:
+→ [LOST] (with reason + TL approval)
+→ [COLD NURTURING] (not ready now)
+→ [JUNK] (not relevant + TL approval)
+                    </pre>
+                </div>
+            </div>
+
+            <!-- Task Distribution -->
+            <div class="section">
+                <h2 class="section-title">Post-Qualification Task Distribution</h2>
+
+                <!-- HOT LEAD Tasks -->
+                <div class="task-track">
+                    <div class="task-track-header">
+                        <h3>🔥 HOT LEAD - 8 Tasks Over 60 Days</h3>
+                        <div class="objective">Objective: Push towards consultation, site visit, proposal, closure</div>
+                    </div>
+
+                    <div class="task-card">
+                        <h4>Week 1 - Task 1 (Day 1-2)</h4>
+                        <div class="task-info">
+                            <div class="task-info-item">
+                                <div class="label">Owner:</div>
+                                <div class="value">BDM</div>
+                            </div>
+                            <div class="task-info-item">
+                                <div class="label">Action:</div>
+                                <div class="value">Book consultation call/visit</div>
+                            </div>
+                        </div>
+                        <div class="task-script">
+                            Call Script: "Consultation slot confirm பண்ணலாமா? இந்த week available-ஆ?"
+                        </div>
+                        <div style="color: #20c997; font-weight: 600; margin-top: 10px;">
+                            ✓ Success: Consultation booked → Create Site Visit task
+                        </div>
+                    </div>
+
+                    <div class="task-card">
+                        <h4>Week 2 - Task 2 (Day 7-8)</h4>
+                        <div class="task-info">
+                            <div class="task-info-item">
+                                <div class="label">Owner:</div>
+                                <div class="value">BDM</div>
+                            </div>
+                            <div class="task-info-item">
+                                <div class="label">Action:</div>
+                                <div class="value">Follow up on consultation/site visit</div>
+                            </div>
+                        </div>
+                        <ul style="list-style: none; padding: 10px 0;">
+                            <li>• If done: Proceed to proposal</li>
+                            <li>• If not done: Reschedule, understand blocker</li>
+                        </ul>
+                    </div>
+
+                    <div class="task-card">
+                        <h4>Week 3 - Task 3 (Day 14-15)</h4>
+                        <div class="task-info">
+                            <div class="task-info-item">
+                                <div class="label">Owner:</div>
+                                <div class="value">BDM</div>
+                            </div>
+                            <div class="task-info-item">
+                                <div class="label">Action:</div>
+                                <div class="value">Proposal follow-up OR second consultation push</div>
+                            </div>
+                        </div>
+                        <div style="padding: 10px 0;">Share: ROI calculator, EMI options</div>
+                    </div>
+
+                    <div class="task-card">
+                        <h4>Week 4 - Task 4 (Day 21-22)</h4>
+                        <div class="task-info">
+                            <div class="task-info-item">
+                                <div class="label">Owner:</div>
+                                <div class="value">BDM</div>
+                            </div>
+                            <div class="task-info-item">
+                                <div class="label">Action:</div>
+                                <div class="value">Address objections from proposal</div>
+                            </div>
+                        </div>
+                        <div style="padding: 10px 0;">Share: Customer testimonial, subsidy info</div>
+                    </div>
+
+                    <div class="task-card">
+                        <h4>Week 5 - Task 5 (Day 28-29)</h4>
+                        <div class="task-info">
+                            <div class="task-info-item">
+                                <div class="label">Owner:</div>
+                                <div class="value">BDM</div>
+                            </div>
+                            <div class="task-info-item">
+                                <div class="label">Action:</div>
+                                <div class="value">Push for commitment</div>
+                            </div>
+                        </div>
+                        <div style="padding: 10px 0;">Offer: Limited time offer if available</div>
+                    </div>
+
+                    <div class="task-card">
+                        <h4>Week 6 - Task 6 (Day 35-36)</h4>
+                        <div class="task-info">
+                            <div class="task-info-item">
+                                <div class="label">Owner:</div>
+                                <div class="value">BDM</div>
+                            </div>
+                            <div class="task-info-item">
+                                <div class="label">Action:</div>
+                                <div class="value">Decision maker connect</div>
+                            </div>
+                        </div>
+                        <div style="padding: 10px 0;">If family involved: Offer family consultation</div>
+                    </div>
+
+                    <div class="task-card">
+                        <h4>Week 7 - Task 7 (Day 42-43)</h4>
+                        <div class="task-info">
+                            <div class="task-info-item">
+                                <div class="label">Owner:</div>
+                                <div class="value">BDM</div>
+                            </div>
+                            <div class="task-info-item">
+                                <div class="label">Action:</div>
+                                <div class="value">Final negotiation</div>
+                            </div>
+                        </div>
+                        <div style="padding: 10px 0;">Escalate: Involve Sales Manager if needed</div>
+                    </div>
+
+                    <div class="task-card">
+                        <h4>Week 8 - Task 8 (Day 56-60)</h4>
+                        <div class="task-info">
+                            <div class="task-info-item">
+                                <div class="label">Owner:</div>
+                                <div class="value">BDM + Sales Manager</div>
+                            </div>
+                            <div class="task-info-item">
+                                <div class="label">Action:</div>
+                                <div class="value">Close or extend</div>
+                            </div>
+                        </div>
+                        <div style="padding: 10px 0; color: #f76707; font-weight: 600;">
+                            If not closed: TL review → Extend 30 days OR move to Warm
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WARM LEAD Tasks -->
+                <div class="task-track">
+                    <div class="task-track-header">
+                        <h3>🌤️ WARM LEAD - 4 Tasks Over 30 Days</h3>
+                        <div class="objective">Objective: Build interest, educate, move to Hot</div>
+                    </div>
+
+                    <div class="task-card">
+                        <h4>Week 1 - Task 1 (Day 3-4)</h4>
+                        <div class="task-info">
+                            <div class="task-info-item">
+                                <div class="label">Owner:</div>
+                                <div class="value">CRM Executive</div>
+                            </div>
+                            <div class="task-info-item">
+                                <div class="label">Action:</div>
+                                <div class="value">Share brochure, video, answer questions</div>
+                            </div>
+                            <div class="task-info-item">
+                                <div class="label">Goal:</div>
+                                <div class="value">Gauge real interest level</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="task-card">
+                        <h4>Week 2 - Task 2 (Day 10-11)</h4>
+                        <div class="task-info">
+                            <div class="task-info-item">
+                                <div class="label">Owner:</div>
+                                <div class="value">CRM Executive</div>
+                            </div>
+                            <div class="task-info-item">
+                                <div class="label">Action:</div>
+                                <div class="value">Share customer story, ROI example</div>
+                            </div>
+                            <div class="task-info-item">
+                                <div class="label">Goal:</div>
+                                <div class="value">Build trust and urgency</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="task-card">
+                        <h4>Week 3 - Task 3 (Day 17-18)</h4>
+                        <div class="task-info">
+                            <div class="task-info-item">
+                                <div class="label">Owner:</div>
+                                <div class="value">CRM Executive</div>
+                            </div>
+                            <div class="task-info-item">
+                                <div class="label">Action:</div>
+                                <div class="value">Offer consultation/site assessment</div>
+                            </div>
+                            <div class="task-info-item">
+                                <div class="label">Goal:</div>
+                                <div class="value">Convert to Hot</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="task-card">
+                        <h4>Week 4 - Task 4 (Day 25-28)</h4>
+                        <div class="task-info">
+                            <div class="task-info-item">
+                                <div class="label">Owner:</div>
+                                <div class="value">CRM Executive</div>
+                            </div>
+                            <div class="task-info-item">
+                                <div class="label">Action:</div>
+                                <div class="value">Final check, book consultation or extend nurturing</div>
+                            </div>
+                        </div>
+                        <ul style="list-style: none; padding: 10px 0;">
+                            <li style="color: #20c997;">• If interested: Move to HOT, create 8 tasks</li>
+                            <li style="color: #4dabf7;">• If not ready: Move to COLD nurturing</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- COLD LEAD Nurturing -->
+                <div class="task-track">
+                    <div class="task-track-header">
+                        <h3>❄️ COLD LEAD - 16 Week Nurturing</h3>
+                        <div class="objective">Objective: Stay in touch, re-engage when ready</div>
+                    </div>
+
+                    <div style="padding: 20px; background: #e7f5ff; border-radius: 10px;">
+                        <div style="margin-bottom: 15px;">
+                            <strong>Frequency:</strong> One WhatsApp message every 2 weeks<br>
+                            <strong>Owner:</strong> Automation (no manual tasks unless customer responds)
+                        </div>
+
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr style="background: #f8f9fa;">
+                                <td style="padding: 12px; border: 1px solid #dee2e6; font-weight: 600;">Week 2</td>
+                                <td style="padding: 12px; border: 1px solid #dee2e6;">Market update message</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid #dee2e6; font-weight: 600;">Week 4</td>
+                                <td style="padding: 12px; border: 1px solid #dee2e6;">Festival/seasonal offer</td>
+                            </tr>
+                            <tr style="background: #f8f9fa;">
+                                <td style="padding: 12px; border: 1px solid #dee2e6; font-weight: 600;">Week 6</td>
+                                <td style="padding: 12px; border: 1px solid #dee2e6;">Customer success story</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid #dee2e6; font-weight: 600;">Week 8</td>
+                                <td style="padding: 12px; border: 1px solid #dee2e6;">EMI/financing highlight</td>
+                            </tr>
+                            <tr style="background: #f8f9fa;">
+                                <td style="padding: 12px; border: 1px solid #dee2e6; font-weight: 600;">Week 10</td>
+                                <td style="padding: 12px; border: 1px solid #dee2e6;">Subsidy update message</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid #dee2e6; font-weight: 600;">Week 12</td>
+                                <td style="padding: 12px; border: 1px solid #dee2e6;">New offer announcement</td>
+                            </tr>
+                            <tr style="background: #f8f9fa;">
+                                <td style="padding: 12px; border: 1px solid #dee2e6; font-weight: 600;">Week 14</td>
+                                <td style="padding: 12px; border: 1px solid #dee2e6;">Re-engagement check ("Still interested?")</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid #dee2e6; font-weight: 600;">Week 16</td>
+                                <td style="padding: 12px; border: 1px solid #dee2e6;">Final message before archive</td>
+                            </tr>
+                        </table>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #d3f9d8; border-radius: 8px;">
+                            <strong style="color: #2b8a3e;">If customer responds at any point:</strong><br>
+                            → Move to WARM<br>
+                            → Create 4 follow-up tasks<br>
+                            → BDM calls within 4 hours
+                        </div>
+
+                        <div style="margin-top: 15px; padding: 15px; background: #fff3bf; border-radius: 8px;">
+                            <strong style="color: #856404;">After 16 weeks with no response:</strong><br>
+                            → Move to Archive<br>
+                            → Yearly touchpoint only (Pongal, Diwali)
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Stage Details -->
+            <div class="section">
+                <h2 class="section-title">Key Stage Definitions</h2>
+
+                <div class="stage-card">
+                    <h4>NEW</h4>
+                    <div class="stage-info"><strong>Entry:</strong> Lead enters CRM from any source</div>
+                    <div class="stage-info"><strong>Max time:</strong> 4 hours</div>
+                    <div class="stage-actions">
+                        <h5>Auto-actions:</h5>
+                        <ul>
+                            <li>Welcome WhatsApp within 5 minutes</li>
+                            <li>Create Attempt 1 task</li>
+                            <li>Assign to CRM Executive</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="stage-card">
+                    <h4>5-DAY ATTEMPT IN PROGRESS</h4>
+                    <div class="stage-info"><strong>Owner:</strong> CRM Executive</div>
+                    <div class="stage-info"><strong>Actions:</strong> 5 call attempts with WhatsApp fallback</div>
+                    <div class="stage-info"><strong>Exit:</strong> Connected OR All 5 attempts done</div>
+                    <div class="stage-info"><strong>Max time:</strong> 6 days (including TL review)</div>
+                </div>
+
+                <div class="stage-card">
+                    <h4>CONTACTED</h4>
+                    <div class="stage-info"><strong>Entry:</strong> Customer connected on call OR replied to WhatsApp</div>
+                    <div class="stage-info"><strong>Owner:</strong> CRM Executive</div>
+                    <div class="stage-info"><strong>Actions:</strong> Complete qualification call (Score all 8 criteria)</div>
+                    <div class="stage-info"><strong>Max time:</strong> 24 hours from contact</div>
+                </div>
+
+                <div class="stage-card">
+                    <h4>QUALIFIED (Hot/Warm/Cold)</h4>
+                    <div class="stage-info"><strong>Entry:</strong> Scoring complete</div>
+                    <div class="stage-info"><strong>Sub-stages:</strong> HOT / WARM / COLD</div>
+                    <div class="stage-info"><strong>Owner:</strong> BDM (Hot), CRM Executive (Warm/Cold)</div>
+                    <div class="stage-info"><strong>Actions:</strong> Begin appropriate task cycle</div>
+                </div>
+
+                <div class="stage-card">
+                    <h4>CONSULTATION SCHEDULED</h4>
+                    <div class="stage-info"><strong>Owner:</strong> BDM</div>
+                    <div class="stage-info"><strong>Max time:</strong> 7 days (must reschedule if delayed)</div>
+                    <div class="stage-actions">
+                        <h5>Auto-actions:</h5>
+                        <ul>
+                            <li>Calendar event created</li>
+                            <li>Reminder 24 hours before</li>
+                            <li>Reminder 2 hours before</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <a href="02-qualification-scoring.html" class="nav-button">← Previous: Qualification & Scoring</a>
+            <a href="04-whatsapp-initial.html" class="nav-button">Next: WhatsApp Initial Sequences →</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Initial Sequences - Triples Energy V2.0</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+            padding: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .nav-breadcrumb {
+            background: #f8f9fa;
+            padding: 15px 40px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .nav-breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .nav-breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 2em;
+            color: #1e3c72;
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #25D366;
+            font-weight: 600;
+        }
+
+        .sequence-header {
+            background: linear-gradient(135deg, #f03e3e, #c92a2a);
+            color: white;
+            padding: 25px 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+
+        .sequence-header.warm {
+            background: linear-gradient(135deg, #ff922b, #fd7e14);
+        }
+
+        .sequence-header.cold {
+            background: linear-gradient(135deg, #4dabf7, #228be6);
+        }
+
+        .sequence-header h3 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .sequence-info {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .sequence-info-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sequence-info-item strong {
+            opacity: 0.9;
+        }
+
+        .message-box {
+            background: linear-gradient(135deg, #d3f9d8 0%, #b2f2bb 100%);
+            border-left: 4px solid #51cf66;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .message-label {
+            background: #20c997;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.95em;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .message-text {
+            background: white;
+            border: 1px solid #b2f2bb;
+            border-radius: 10px;
+            padding: 20px;
+            line-height: 1.8;
+            color: #212529;
+            white-space: pre-line;
+            font-size: 1.05em;
+        }
+
+        .message-text .variable {
+            background: #fff3bf;
+            color: #856404;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .timing-badge {
+            display: inline-block;
+            background: #e7f5ff;
+            color: #1971c2;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            padding: 30px 40px;
+            background: #f8f9fa;
+            border-top: 2px solid #e9ecef;
+        }
+
+        .nav-button {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💬 WhatsApp Initial Sequences</h1>
+            <div class="subtitle">Section 04: Hot, Warm, and Cold Lead Nurturing (Tanglish)</div>
+        </div>
+
+        <div class="nav-breadcrumb">
+            <a href="index.html">← Back to Index</a> | <a href="03-stages-tasks.html">← Previous: Stages & Tasks</a>
+        </div>
+
+        <div class="content">
+            <!-- HOT LEAD SEQUENCE -->
+            <div class="section">
+                <h2 class="section-title">🔥 Sequence A: Hot Lead Fast-Track</h2>
+                
+                <div class="sequence-header">
+                    <h3>Hot Lead Fast-Track</h3>
+                    <div class="sequence-info">
+                        <div class="sequence-info-item">
+                            <strong>Trigger:</strong> Lead scored 70+
+                        </div>
+                        <div class="sequence-info-item">
+                            <strong>Duration:</strong> Until consultation booked
+                        </div>
+                        <div class="sequence-info-item">
+                            <strong>Messages:</strong> 3 messages
+                        </div>
+                    </div>
+                </div>
+
+                <div class="message-box">
+                    <div class="message-label">MESSAGE HA1 - Immediately After Qualification</div>
+                    <div class="message-text"><span class="variable">{Name}</span>, நல்ல news! 🎉
+
+உங்க requirement-க்கு solar மிகவும் suitable.
+
+நம்ம expert உங்க area-ல free consultation தருவாங்க:
+✅ Exact savings calculation
+✅ Best system recommendation
+✅ Subsidy guidance
+
+எப்போ convenient?
+👉 நாளை - 1
+👉 இந்த weekend - 2
+👉 நானே call பண்றேன் - 3
+
+📞 <span class="variable">{CompanyPhone}</span></div>
+                </div>
+
+                <div class="message-box">
+                    <div class="message-label">MESSAGE HA2 - If No Response in 24 Hours <span class="timing-badge">24 hours</span></div>
+                    <div class="message-text"><span class="variable">{Name}</span>, consultation slot book பண்ணலாமா?
+
+உங்க EB bill <span class="variable">{EBBill}</span> based-ஆ:
+💰 Expected savings: ₹<span class="variable">{MonthlySavings}</span>/month
+💰 Payback period: <span class="variable">{PaybackYears}</span> years
+
+இந்த week-ல slot available இருக்கு.
+
+Book பண்ணவா?
+👉 ஆமா - 1
+
+📞 <span class="variable">{CompanyPhone}</span></div>
+                </div>
+
+                <div class="message-box">
+                    <div class="message-label">MESSAGE HA3 - Day 3 (Urgency) <span class="timing-badge">Day 3</span></div>
+                    <div class="message-text"><span class="variable">{Name}</span>, quick update 📢
+
+இந்த மாசம் special:
+🎁 Free installation worth ₹15,000
+🎁 5 year warranty upgrade
+
+Limited slots only.
+
+Interest-ஆ இருந்தா 1 அனுப்புங்க, immediately book பண்றோம்!</div>
+                </div>
+            </div>
+
+            <!-- WARM LEAD SEQUENCE -->
+            <div class="section">
+                <h2 class="section-title">🌤️ Sequence B: Warm Lead Nurturing (30 Days)</h2>
+                
+                <div class="sequence-header warm">
+                    <h3>Warm Lead Nurturing</h3>
+                    <div class="sequence-info">
+                        <div class="sequence-info-item">
+                            <strong>Trigger:</strong> Lead scored 50-69
+                        </div>
+                        <div class="sequence-info-item">
+                            <strong>Duration:</strong> 30 days
+                        </div>
+                        <div class="sequence-info-item">
+                            <strong>Messages:</strong> 6 messages
+                        </div>
+                    </div>
+                </div>
+
+                <div class="message-box">
+                    <div class="message-label">MESSAGE WA1 - Day 1 (Welcome + Value) <span class="timing-badge">Day 1</span></div>
+                    <div class="message-text"><span class="variable">{Name}</span>, Triples Energy-ல இருந்து 🙏
+
+Solar பத்தி consider பண்றீங்க, நல்ல decision!
+
+Quick facts:
+☀️ EB bill 50-70% குறையும்
+☀️ 25 years panel life
+☀️ Govt subsidy available
+
+இந்த video பாருங்க (2 mins): <span class="variable">{VideoLink}</span>
+
+Doubt இருந்தா 1 அனுப்புங்க, call பண்றோம்.</div>
+                </div>
+
+                <div class="message-box">
+                    <div class="message-label">MESSAGE WA2 - Day 5 (Customer Story) <span class="timing-badge">Day 5</span></div>
+                    <div class="message-text"><span class="variable">{Name}</span>, இது பாருங்க 👇
+
+<span class="variable">{CustomerName}</span> - <span class="variable">{NearbyArea}</span>:
+"முன்னாடி EB bill ₹6,000 வந்துச்சு. 
+Solar போட்ட பிறகு ₹1,800 தான்.
+மாசம் ₹4,200 மிச்சம்!"
+
+நீங்களும் இப்படி save பண்ணலாம்.
+
+Free consultation வேணுமா?
+👉 ஆமா - 1
+👉 Later - 2</div>
+                </div>
+
+                <div class="message-box">
+                    <div class="message-label">MESSAGE WA3 - Day 10 (EMI Option) <span class="timing-badge">Day 10</span></div>
+                    <div class="message-text"><span class="variable">{Name}</span>, ஒரே payment கஷ்டமா?
+
+No problem! EMI option இருக்கு:
+💳 ₹2,499/month onwards
+💳 0% processing fee
+💳 6 to 60 months tenure
+
+EMI < உங்க current EB bill! 
+
+Day 1 from save பண்ணலாம்.
+
+EMI details வேணுமா?
+👉 ஆமா - 1</div>
+                </div>
+
+                <div class="message-box">
+                    <div class="message-label">MESSAGE WA4 - Day 15 (Subsidy Info) <span class="timing-badge">Day 15</span></div>
+                    <div class="message-text"><span class="variable">{Name}</span>, subsidy பத்தி தெரியுமா?
+
+<span class="variable">{Segment}</span> customers-க்கு:
+💰 Govt subsidy up to ₹78,000
+💰 நாங்க paperwork help பண்றோம்
+💰 Direct bank credit
+
+Subsidy eligibility check பண்ணணுமா?
+👉 ஆமா - 1
+
+📞 <span class="variable">{CompanyPhone}</span></div>
+                </div>
+
+                <div class="message-box">
+                    <div class="message-label">MESSAGE WA5 - Day 22 (Consultation Push) <span class="timing-badge">Day 22</span></div>
+                    <div class="message-text"><span class="variable">{Name}</span>, 15 mins free consultation 📞
+
+இதுல cover பண்றோம்:
+✅ உங்க roof assessment
+✅ Exact system size
+✅ Total cost + subsidy
+✅ EMI options
+✅ ROI calculation
+
+Book பண்ணலாமா?
+👉 இந்த week - 1
+👉 Next week - 2
+👉 Not now - 3</div>
+                </div>
+
+                <div class="message-box">
+                    <div class="message-label">MESSAGE WA6 - Day 28 (Final Push) <span class="timing-badge">Day 28</span></div>
+                    <div class="message-text"><span class="variable">{Name}</span>, 30 days ஆச்சு 🙏
+
+Solar-ல interest இருக்கா?
+
+👉 ஆமா, call பண்ணுங்க - 1
+👉 இப்போ வேண்டாம், later - 2
+👉 Interested இல்ல - 3
+
+எந்த reply-உம் valuable, honest-ஆ சொல்லுங்க 😊</div>
+                </div>
+            </div>
+
+            <!-- COLD LEAD SEQUENCE -->
+            <div class="section">
+                <h2 class="section-title">❄️ Sequence C: Cold Lead Long-Term (16 Weeks)</h2>
+                
+                <div class="sequence-header cold">
+                    <h3>Cold Lead Long-Term Nurturing</h3>
+                    <div class="sequence-info">
+                        <div class="sequence-info-item">
+                            <strong>Trigger:</strong> Lead scored 30-49 OR moved from Warm
+                        </div>
+                        <div class="sequence-info-item">
+                            <strong>Duration:</strong> 16 weeks
+                        </div>
+                        <div class="sequence-info-item">
+                            <strong>Frequency:</strong> Bi-weekly (8 messages)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="message-box">
+                    <div class="message-label">MESSAGE CA1 - Week 2 (Soft Touch) <span class="timing-badge">Week 2</span></div>
+                    <div class="message-text"><span class="variable">{Name}</span>, Triples Energy 🙏
+
+Solar prices drop ஆகுது!
+Last year compare-ல 15% less.
+
+Ready ஆகும்போது "Hi" அனுப்புங்க.</div>
+                </div>
+
+                <div class="message-box">
+                    <div class="message-label">MESSAGE CA2 - Week 4 (Seasonal/Festival) <span class="timing-badge">Week 4</span></div>
+                    <div class="message-text"><span class="variable">{Name}</span>, <span class="variable">{FestivalName}</span> நல்வாழ்த்துக்கள்! 🎉
+
+Special offer: <span class="variable">{OfferDetails}</span>
+
+Valid till <span class="variable">{Date}</span>.
+
+Interest-ஆ இருந்தா 1 அனுப்புங்க.</div>
+                </div>
+
+                <div class="message-box">
+                    <div class="message-label">MESSAGE CA3 - Week 6 (Success Story) <span class="timing-badge">Week 6</span></div>
+                    <div class="message-text"><span class="variable">{Name}</span>, real story 👇
+
+<span class="variable">{DistrictName}</span>-ல 50+ families solar use பண்றாங்க.
+
+Average savings: ₹4,000/month
+
+நீங்களும் join பண்ணலாம்!
+👉 1 - Tell me more</div>
+                </div>
+
+                <div class="message-box">
+                    <div class="message-label">MESSAGE CA4 - Week 8 (EMI Reminder) <span class="timing-badge">Week 8</span></div>
+                    <div class="message-text"><span class="variable">{Name}</span>, EMI option reminder:
+
+Solar system @ ₹2,499/month
+No down payment options available
+Bank tie-ups: SBI, HDFC, ICICI
+
+Details-க்கு 1 அனுப்புங்க.</div>
+                </div>
+
+                <div class="message-box">
+                    <div class="message-label">MESSAGE CA5 - Week 10 (Subsidy Update) <span class="timing-badge">Week 10</span></div>
+                    <div class="message-text"><span class="variable">{Name}</span>, subsidy update 📢
+
+Govt subsidy rates change ஆகலாம் next quarter.
+
+Lock current rates-க்கு now enquire பண்ணுங்க.
+
+👉 1 - Check my eligibility</div>
+                </div>
+
+                <div class="message-box">
+                    <div class="message-label">MESSAGE CA6 - Week 12 (New Offer) <span class="timing-badge">Week 12</span></div>
+                    <div class="message-text"><span class="variable">{Name}</span>, புது offer! 🎁
+
+<span class="variable">{OfferDetails}</span>
+
+Limited period.
+
+Interested?
+👉 1 - Yes
+👉 2 - Not now</div>
+                </div>
+
+                <div class="message-box">
+                    <div class="message-label">MESSAGE CA7 - Week 14 (Re-engagement) <span class="timing-badge">Week 14</span></div>
+                    <div class="message-text"><span class="variable">{Name}</span>, quick check 🙏
+
+Solar-ல இன்னும் interest இருக்கா?
+
+👉 1 - ஆமா, contact பண்ணுங்க
+👉 2 - Maybe later
+👉 3 - வேண்டாம்</div>
+                </div>
+
+                <div class="message-box">
+                    <div class="message-label">MESSAGE CA8 - Week 16 (Final) <span class="timing-badge">Week 16</span></div>
+                    <div class="message-text"><span class="variable">{Name}</span>, இது last scheduled message.
+
+Future updates மட்டும் send பண்றோம்.
+
+எப்போவாவது solar பத்தி யோசிச்சா:
+📞 <span class="variable">{CompanyPhone}</span>
+💬 "Solar" message பண்ணுங்க
+
+நன்றி 🙏
+- Team Triples Energy</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <a href="03-stages-tasks.html" class="nav-button">← Previous: Stages & Tasks</a>
+            <a href="05-whatsapp-objections.html" class="nav-button">Next: WhatsApp Objection Nurturing →</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Objection Nurturing - Triples Energy V2.0</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f03e3e 0%, #c92a2a 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #f03e3e 0%, #c92a2a 100%);
+            color: white;
+            padding: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .new-badge {
+            display: inline-block;
+            background: #ffd43b;
+            color: #856404;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.75em;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .nav-breadcrumb {
+            background: #f8f9fa;
+            padding: 15px 40px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .nav-breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .nav-breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .intro-box {
+            background: linear-gradient(135deg, #fff3bf 0%, #ffe066 100%);
+            border-left: 4px solid #ffd43b;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .intro-box h3 {
+            color: #856404;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .intro-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .intro-box li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #856404;
+        }
+
+        .intro-box li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .objection-track {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            padding: 0;
+            margin-bottom: 40px;
+            overflow: hidden;
+        }
+
+        .track-header {
+            background: linear-gradient(135deg, #f03e3e, #c92a2a);
+            color: white;
+            padding: 25px 30px;
+        }
+
+        .track-header h3 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .track-header .objection-text {
+            opacity: 0.9;
+            font-size: 1.05em;
+            font-style: italic;
+        }
+
+        .track-content {
+            padding: 30px;
+        }
+
+        .week-message {
+            background: linear-gradient(135deg, #d3f9d8 0%, #e6fcf5 100%);
+            border-left: 4px solid #51cf66;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .week-label {
+            background: #20c997;
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .task-note {
+            background: #e7f5ff;
+            color: #1971c2;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 0.9em;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .message-text {
+            background: white;
+            border: 1px solid #b2f2bb;
+            border-radius: 8px;
+            padding: 18px;
+            line-height: 1.8;
+            color: #212529;
+            white-space: pre-line;
+            font-size: 1.02em;
+        }
+
+        .message-text .variable {
+            background: #fff3bf;
+            color: #856404;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            padding: 30px 40px;
+            background: #f8f9fa;
+            border-top: 2px solid #e9ecef;
+        }
+
+        .nav-button {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 WhatsApp Objection Nurturing <span class="new-badge">NEW V2.0</span></h1>
+            <div class="subtitle">Section 05: 7 Objection-Specific Tracks × 8 Weeks = 56 Tanglish Messages</div>
+        </div>
+
+        <div class="nav-breadcrumb">
+            <a href="index.html">← Back to Index</a> | <a href="04-whatsapp-initial.html">← Previous: WhatsApp Initial Sequences</a>
+        </div>
+
+        <div class="content">
+            <div class="intro-box">
+                <h3>📌 Objective</h3>
+                <p style="color: #856404; margin-bottom: 15px;">After site visit/proposal, customers often stall due to specific objections. This section provides objection-specific nurturing tracks with manual tasks + automated WhatsApp over 60 days (8 weeks).</p>
+                
+                <h3 style="margin-top: 20px;">7 Objection Categories:</h3>
+                <ul>
+                    <li>PRICE - "விலை அதிகம்"</li>
+                    <li>EMI/FINANCING - "EMI/Loan issue"</li>
+                    <li>ROOF SUITABILITY - "Roof problem"</li>
+                    <li>FAMILY DECISION - "Family-கிட்ட கேக்கணும்"</li>
+                    <li>SUBSIDY DOUBTS - "Subsidy கிடைக்குமா?"</li>
+                    <li>TIMING/DELAY - "இப்போ வேண்டாம், later"</li>
+                    <li>COMPETITOR - "வேற company பாக்குறேன்"</li>
+                </ul>
+            </div>
+
+            <!-- TRACK 1: PRICE -->
+            <div class="objection-track">
+                <div class="track-header">
+                    <h3>💰 Track 1: Price Concern</h3>
+                    <div class="objection-text">"விலை ரொம்ப அதிகம்", "Budget இல்ல", "Costly"</div>
+                </div>
+                <div class="track-content">
+                    <div class="week-message">
+                        <div class="week-label">Week 1</div>
+                        <div class="task-note">Task: Call to understand exact budget gap</div>
+                        <div class="message-text"><span class="variable">{Name}</span>, price பத்தி யோசிக்குறீங்க, புரியுது 🙏
+
+ஆனா இது பாருங்க:
+💰 Solar = One-time investment
+💰 EB bill = Life-long payment
+
+₹<span class="variable">{Price}</span> invest பண்ணா, ₹<span class="variable">{TotalSavings}</span> save!
+
+Budget-friendly options discuss பண்ணலாமா?
+👉 ஆமா - 1</div>
+                    </div>
+
+                    <div class="week-message">
+                        <div class="week-label">Week 2</div>
+                        <div class="task-note">Task: Share EMI options, smaller system alternatives</div>
+                        <div class="message-text"><span class="variable">{Name}</span>, flexible options இருக்கு:
+
+Option A: <span class="variable">{Size1}</span>kW - ₹<span class="variable">{Price1}</span> (EMI: ₹<span class="variable">{EMI1}</span>)
+Option B: <span class="variable">{Size2}</span>kW - ₹<span class="variable">{Price2}</span> (EMI: ₹<span class="variable">{EMI2}</span>)
+
+Small system-லயும் EB bill 50% குறையும்!
+
+Discuss பண்ணலாமா?
+👉 1 - Call பண்ணுங்க</div>
+                    </div>
+
+                    <div class="week-message">
+                        <div class="week-label">Week 3</div>
+                        <div class="task-note">Task: Share ROI comparison with other investments</div>
+                        <div class="message-text"><span class="variable">{Name}</span>, solar vs other investments:
+
+🏦 FD: 6-7% return
+📈 Mutual Fund: 10-12% (risky)
+☀️ Solar: 20-25% return (guaranteed savings)
+
+Plus, solar-ல risk இல்ல!
+
+இந்த angle-ல யோசிச்சு பாருங்க 🙏</div>
+                    </div>
+
+                    <div class="week-message">
+                        <div class="week-label">Week 4</div>
+                        <div class="task-note">Task: Offer special discount (if available)</div>
+                        <div class="message-text"><span class="variable">{Name}</span>, good news! 🎉
+
+இந்த மாசம் special:
+🎁 <span class="variable">{DiscountOffer}</span>
+
+உங்களுக்கு apply ஆகுமா-ன்னு check பண்ணட்டுமா?
+👉 ஆமா - 1</div>
+                    </div>
+
+                    <div class="week-message">
+                        <div class="week-label">Week 5</div>
+                        <div class="task-note">Task: Share customer testimonial (price concern resolved)</div>
+                        <div class="message-text"><span class="variable">{Name}</span>, இது கேளுங்க:
+
+<span class="variable">{CustomerName}</span>, <span class="variable">{Area}</span>:
+"முதல்ல expensive-ன்னு நினைச்சேன். 
+இப்போ 2 years ஆச்சு, ₹96,000 save பண்ணிட்டேன்.
+Best decision!"
+
+இவங்ககிட்டயே பேசணுமா?
+👉 ஆமா - 1</div>
+                    </div>
+
+                    <div class="week-message">
+                        <div class="week-label">Week 6</div>
+                        <div class="task-note">Task: Highlight subsidy benefits</div>
+                        <div class="message-text"><span class="variable">{Name}</span>, subsidy மறந்துடாதீங்க!
+
+Govt subsidy: Up to ₹<span class="variable">{SubsidyAmount}</span>
+Your actual cost: ₹<span class="variable">{NetPrice}</span> only!
+
+Subsidy எப்போ வேணா change ஆகலாம்.
+
+Lock பண்ணணுமா?
+👉 1 - Proceed</div>
+                    </div>
+
+                    <div class="week-message">
+                        <div class="week-label">Week 7</div>
+                        <div class="task-note">Task: Manager call for special consideration</div>
+                        <div class="message-text"><span class="variable">{Name}</span>, Sales Manager personally call பண்ண சொல்லியிருக்கேன்.
+
+உங்க budget-க்கு ஏத்த solution definitely இருக்கு.
+
+Call receive பண்ணுங்க 🙏</div>
+                    </div>
+
+                    <div class="week-message">
+                        <div class="week-label">Week 8</div>
+                        <div class="task-note">Task: Final closure attempt OR move to cold</div>
+                        <div class="message-text"><span class="variable">{Name}</span>, 8 weeks ஆச்சு 🙏
+
+Final decision என்ன?
+
+👉 1 - Proceed, best price குடுங்க
+👉 2 - 3 months-ல consider பண்றேன்
+👉 3 - இப்போ possible இல்ல
+
+Honest reply help பண்ணும் 😊</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TRACK 2: EMI/FINANCING -->
+            <div class="objection-track">
+                <div class="track-header">
+                    <h3>💳 Track 2: EMI/Financing Concern</h3>
+                    <div class="objection-text">"EMI கட்ட முடியுமா?", "Loan approval?", "Bank problem"</div>
+                </div>
+                <div class="track-content">
+                    <div class="week-message">
+                        <div class="week-label">Week 1</div>
+                        <div class="message-text"><span class="variable">{Name}</span>, EMI/loan பத்தி concern புரியுது 🙏
+
+நம்ம bank tie-ups:
+🏦 SBI, HDFC, ICICI, Axis
+🏦 Quick approval (48-72 hours)
+🏦 Minimal documentation
+
+Eligibility check பண்ணட்டுமா?
+👉 ஆமா - 1</div>
+                    </div>
+
+                    <div class="week-message">
+                        <div class="week-label">Week 2</div>
+                        <div class="message-text"><span class="variable">{Name}</span>, EMI calculation:
+
+System cost: ₹<span class="variable">{Price}</span>
+Down payment: ₹<span class="variable">{DownPayment}</span> (optional)
+EMI: ₹<span class="variable">{EMI}</span>/month x <span class="variable">{Tenure}</span> months
+
+Compare: Current EB bill ₹<span class="variable">{EBBill}</span>
+EMI actually LESS! 
+
+Clear-ஆ explain பண்ணட்டுமா?
+👉 1 - Call பண்ணுங்க</div>
+                    </div>
+
+                    <div class="week-message">
+                        <div class="week-label">Week 3</div>
+                        <div class="message-text"><span class="variable">{Name}</span>, documents ready-ஆ?
+
+EMI-க்கு இவ்வளவு தான்:
+📄 Aadhar copy
+📄 PAN copy
+📄 3 months bank statement
+📄 EB bill copy
+
+நாங்க bank coordination பண்றோம்!
+
+Start பண்ணலாமா?
+👉 1 - ஆமா</div>
+                    </div>
+
+                    <div class="week-message">
+                        <div class="week-label">Week 4</div>
+                        <div class="message-text"><span class="variable">{Name}</span>, 0% interest option இருக்கு தெரியுமா?
+
+Select banks-ல 6-12 months 0% EMI available.
+
+Check பண்ணட்டுமா?
+👉 1 - Details சொல்லுங்க</div>
+                    </div>
+
+                    <div class="week-message">
+                        <div class="week-label">Week 5</div>
+                        <div class="message-text"><span class="variable">{Name}</span>, loan reject ஆகும்-ன்னு worry-ஆ?
+
+நம்ம approval rate: 95%+
+
+Reject ஆனா, alternative options:
+✅ Co-applicant add
+✅ Different bank try
+✅ Smaller system with lower EMI
+
+நாங்க support பண்றோம்!
+👉 1 - Proceed</div>
+                    </div>
+
+                    <div class="week-message">
+                        <div class="week-label">Week 6</div>
+                        <div class="message-text"><span class="variable">{Name}</span>, success story:
+
+<span class="variable">{CustomerName}</span>, credit score low இருந்துச்சு.
+நாங்க alternative bank suggest பண்ணோம்.
+இப்போ solar running, மாசம் ₹3,500 save!
+
+உங்களுக்கும் solution இருக்கு.
+👉 1 - Try பண்ணலாம்</div>
+                    </div>
+
+                    <div class="week-message">
+                        <div class="week-label">Week 7</div>
+                        <div class="message-text"><span class="variable">{Name}</span>, finance team head personally help பண்ணுவாங்க.
+
+எந்த bank issue-உம் solve பண்ணலாம்.
+
+Call receive பண்ணுங்க 🙏</div>
+                    </div>
+
+                    <div class="week-message">
+                        <div class="week-label">Week 8</div>
+                        <div class="message-text"><span class="variable">{Name}</span>, EMI concern resolve ஆச்சா?
+
+👉 1 - ஆமா, proceed பண்றேன்
+👉 2 - இன்னும் issue இருக்கு (என்ன?)
+👉 3 - EMI வேண்டாம், later பாக்குறேன்</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TRACK 3: ROOF SUITABILITY -->
+            <div class="objection-track">
+                <div class="track-header">
+                    <h3>🏠 Track 3: Roof Suitability Concern</h3>
+                    <div class="objection-text">"Roof old-ஆ இருக்கு", "Space இல்ல", "Shade problem"</div>
+                </div>
+                <div class="track-content">
+                    <div class="week-message">
+                        <div class="week-label">Week 1</div>
+                        <div class="message-text"><span class="variable">{Name}</span>, roof concern-ஆ? 🏠
+
+பல solutions இருக்கு:
+✅ Sheet roof-லயும் install possible
+✅ Ground mount option
+✅ Partial installation
+✅ Roof repair + solar combo
+
+Free assessment பண்ணட்டுமா?
+👉 1 - ஆமா</div>
+                    </div>
+
+                    <div class="week-message">
+                        <div class="week-label">Week 2</div>
+                        <div class="message-text"><span class="variable">{Name}</span>, roof type எதுவா இருந்தாலும்:
+
+RCC roof ✅ - Best, direct mount
+Sheet roof ✅ - With proper structure
+Tile roof ✅ - Special mounting
+Old roof ⚠️ - Repair பண்ணலாம்
+
+எந்த type உங்களுக்கு?
+👉 1 - Check பண்ணுங்க</div>
+                    </div>
+
+                    <div class="week-message">
+                        <div class="week-label">Week 6</div>
+                        <div class="message-text"><span class="variable">{Name}</span>, ground mount option தெரியுமா?
+
+Roof-ல problem இருந்தா:
+✅ Backyard/garden-ல install
+✅ Same efficiency
+✅ Easy maintenance
+
+Space இருக்கா?
+👉 1 - ஆமா, explain பண்ணுங்க</div>
+                    </div>
+
+                    <div class="week-message">
+                        <div class="week-label">Week 8</div>
+                        <div class="message-text"><span class="variable">{Name}</span>, roof concern solve ஆச்சா?
+
+👉 1 - ஆமா, proceed பண்ணலாம்
+👉 2 - Still doubt இருக்கு
+👉 3 - Roof suitable இல்ல, later பாக்குறேன்</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TRACK 4: FAMILY DECISION -->
+            <div class="objection-track">
+                <div class="track-header">
+                    <h3>👨‍👩‍👧‍👦 Track 4: Family Decision</h3>
+                    <div class="objection-text">"Family-கிட்ட கேக்கணும்", "Wife/Husband discuss", "Parents decide"</div>
+                </div>
+                <div class="track-content">
+                    <div class="week-message">
+                        <div class="week-label">Week 1</div>
+                        <div class="message-text"><span class="variable">{Name}</span>, family discuss பண்றீங்க, நல்லது! 👨‍👩‍👧‍👦
+
+Help பண்ண:
+📄 Simple brochure: <span class="variable">{Link}</span>
+🎥 2-min video: <span class="variable">{VideoLink}</span>
+
+Family-க்கு share பண்ணுங்க.
+
+Questions இருந்தா call arrange பண்றோம்.
+👉 1 - Family call want</div>
+                    </div>
+
+                    <div class="week-message">
+                        <div class="week-label">Week 2</div>
+                        <div class="message-text"><span class="variable">{Name}</span>, family-கிட்ட சொல்ல key points:
+
+1️⃣ Monthly savings: ₹<span class="variable">{Savings}</span>
+2️⃣ Payback: <span class="variable">{Years}</span> years
+3️⃣ 25 year warranty
+4️⃣ Govt subsidy available
+5️⃣ EMI option இருக்கு
+
+Discuss ஆச்சா?
+👉 1 - ஆமா
+👉 2 - இல்ல, இன்னும் time வேணும்</div>
+                    </div>
+
+                    <div class="week-message">
+                        <div class="week-label">Week 5</div>
+                        <div class="message-text"><span class="variable">{Name}</span>, weekend family visit arrange பண்ணலாமா?
+
+எல்லாரும் இருக்கும்போது explain பண்றது easy.
+
+Saturday/Sunday available-ஆ?
+👉 1 - Saturday
+👉 2 - Sunday
+👉 3 - Weekday evening</div>
+                    </div>
+
+                    <div class="week-message">
+                        <div class="week-label">Week 8</div>
+                        <div class="message-text"><span class="variable">{Name}</span>, family final decision?
+
+👉 1 - Approved, proceed பண்றோம்
+👉 2 - Still discussing
+👉 3 - Not now, maybe later
+
+நன்றி for your patience 🙏</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TRACK 5: SUBSIDY DOUBTS -->
+            <div class="objection-track">
+                <div class="track-header">
+                    <h3>💰 Track 5: Subsidy Doubts</h3>
+                    <div class="objection-text">"Subsidy கிடைக்குமா?", "Genuine-ஆ?", "Process complicated?"</div>
+                </div>
+                <div class="track-content">
+                    <div class="week-message">
+                        <div class="week-label">Week 1</div>
+                        <div class="message-text"><span class="variable">{Name}</span>, subsidy doubt-ஆ? புரியுது 🙏
+
+Facts:
+✅ PM-KUSUM / State subsidy - 100% genuine
+✅ Direct bank credit
+✅ நாங்க full paperwork பண்றோம்
+✅ 1000+ customers subsidy வாங்கியாச்சு
+
+Detailed explain பண்ணட்டுமா?
+👉 1 - ஆமா</div>
+                    </div>
+
+                    <div class="week-message">
+                        <div class="week-label">Week 3</div>
+                        <div class="message-text"><span class="variable">{Name}</span>, subsidy process simple:
+
+Step 1: நாங்க apply பண்றோம் ✅
+Step 2: Installation complete ✅
+Step 3: Inspection (govt) ✅
+Step 4: Subsidy credit (30-90 days) ✅
+
+உங்க work: Just approve பண்ணுங்க!
+👉 1 - Start பண்ணலாம்</div>
+                    </div>
+
+                    <div class="week-message">
+                        <div class="week-label">Week 5</div>
+                        <div class="message-text"><span class="variable">{Name}</span>, subsidy rates change warning ⚠️
+
+Current rates எப்போ வேணா revise ஆகலாம்.
+
+Lock பண்ணிட்டா safe.
+
+Proceed பண்ணலாமா?
+👉 1 - ஆமா
+👉 2 - இன்னும் doubt இருக்கு</div>
+                    </div>
+
+                    <div class="week-message">
+                        <div class="week-label">Week 8</div>
+                        <div class="message-text"><span class="variable">{Name}</span>, subsidy doubt clear ஆச்சா?
+
+👉 1 - ஆமா, proceed பண்றேன்
+👉 2 - Still not sure
+👉 3 - Later பாக்குறேன்</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TRACK 6: TIMING/DELAY -->
+            <div class="objection-track">
+                <div class="track-header">
+                    <h3>⏰ Track 6: Timing/Delay</h3>
+                    <div class="objection-text">"இப்போ வேண்டாம்", "3-6 months-ல", "அப்புறம் பாக்குறேன்"</div>
+                </div>
+                <div class="track-content">
+                    <div class="week-message">
+                        <div class="week-label">Week 1</div>
+                        <div class="message-text"><span class="variable">{Name}</span>, timing இப்போ சரி இல்ல, ok! 🙏
+
+ஆனா consider பண்ணுங்க:
+⚡ EB rates increase ஆகுது (yearly 5-8%)
+⚡ Subsidy rates decrease ஆகலாம்
+⚡ Solar prices stable/increasing
+
+Lock பண்றது better, install later-ும் பண்ணலாம்.
+👉 1 - Explain பண்ணுங்க</div>
+                    </div>
+
+                    <div class="week-message">
+                        <div class="week-label">Week 2</div>
+                        <div class="message-text"><span class="variable">{Name}</span>, "booking now, install later" option:
+
+✅ Token amount pay பண்ணுங்க
+✅ Current price lock ஆகும்
+✅ Subsidy rate lock ஆகும்
+✅ Install when ready
+
+Interested?
+👉 1 - ஆமா, details சொல்லுங்க</div>
+                    </div>
+
+                    <div class="week-message">
+                        <div class="week-label">Week 8</div>
+                        <div class="message-text"><span class="variable">{Name}</span>, 2 months ஆச்சு 🙏
+
+Status என்ன?
+👉 1 - Ready now, call பண்ணுங்க
+👉 2 - இன்னும் 3 months
+👉 3 - இன்னும் 6 months+
+👉 4 - Cancel, interested இல்ல</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TRACK 7: COMPETITOR -->
+            <div class="objection-track">
+                <div class="track-header">
+                    <h3>🏆 Track 7: Competitor Comparison</h3>
+                    <div class="objection-text">"வேற company பாக்குறேன்", "Cheaper quote இருக்கு", "XYZ better-ன்னு சொன்னாங்க"</div>
+                </div>
+                <div class="track-content">
+                    <div class="week-message">
+                        <div class="week-label">Week 1</div>
+                        <div class="message-text"><span class="variable">{Name}</span>, comparison பண்றீங்க, நல்லது! 👍
+
+Fair comparison-க்கு check பண்ணுங்க:
+✅ Brand (Tier-1 panels?)
+✅ Warranty (real vs paper)
+✅ After-sales service
+✅ Company track record
+✅ Installation quality
+
+Comparison sheet அனுப்பட்டுமா?
+👉 1 - ஆமா</div>
+                    </div>
+
+                    <div class="week-message">
+                        <div class="week-label">Week 2</div>
+                        <div class="message-text"><span class="variable">{Name}</span>, Tata Power Solar vs others:
+
+🏆 35+ years experience
+🏆 India's #1 solar brand
+🏆 Own manufacturing
+🏆 Pan-India service network
+🏆 Real 25-year warranty
+
+Local brands கிட்ட இது இருக்கா? 🤔</div>
+                    </div>
+
+                    <div class="week-message">
+                        <div class="week-label">Week 3</div>
+                        <div class="message-text"><span class="variable">{Name}</span>, "cheaper" quote-ஆ?
+
+Check பண்ணுங்க:
+⚠️ Panel brand என்ன?
+⚠️ Tier-1 certified-ஆ?
+⚠️ Warranty யார் தருவாங்க?
+⚠️ 5 years-ல company இருக்குமா?
+
+Cheap = Expensive in long run!
+
+Detailed compare பண்ணட்டுமா?
+👉 1 - ஆமா</div>
+                    </div>
+
+                    <div class="week-message">
+                        <div class="week-label">Week 5</div>
+                        <div class="message-text"><span class="variable">{Name}</span>, competitor quote share பண்ணுங்க.
+
+நாங்க:
+✅ Point-by-point compare பண்றோம்
+✅ Hidden costs காட்றோம்
+✅ Quality difference explain பண்றோம்
+
+Fair-ஆ decide பண்ணுங்க.
+👉 1 - Quote share பண்றேன்</div>
+                    </div>
+
+                    <div class="week-message">
+                        <div class="week-label">Week 8</div>
+                        <div class="message-text"><span class="variable">{Name}</span>, decision ஆச்சா?
+
+👉 1 - Triples select பண்றேன்
+👉 2 - Other company போறேன்
+👉 3 - இன்னும் deciding
+
+எது choose பண்ணாலும், quality பாருங்க 🙏</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="navigation">
+            <a href="04-whatsapp-initial.html" class="nav-button">← Previous: WhatsApp Initial Sequences</a>
+            <a href="06-consultation-proposal.html" class="nav-button">Next: Consultation & Proposal →</a>
+        </div>
+    </div>
+</body>
+</html>

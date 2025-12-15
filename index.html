@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triples Energy - Complete CRM System V2.0</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .header .subtitle {
+            font-size: 1.3em;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .version-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #20c997, #12b886);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+
+        .meta-info {
+            background: #f8f9fa;
+            padding: 30px 40px;
+            border-bottom: 3px solid #e9ecef;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .meta-label {
+            font-weight: 600;
+            color: #495057;
+            font-size: 0.9em;
+        }
+
+        .meta-value {
+            color: #2a5298;
+            font-weight: 500;
+        }
+
+        .philosophy-box {
+            background: linear-gradient(135deg, #fff3bf 0%, #ffe066 100%);
+            border-left: 4px solid #ffd43b;
+            padding: 30px 40px;
+            margin: 0;
+        }
+
+        .philosophy-box h3 {
+            color: #856404;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .philosophy-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .philosophy-box li {
+            padding: 8px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #856404;
+            font-size: 1.05em;
+            line-height: 1.6;
+        }
+
+        .philosophy-box li::before {
+            content: '⚡';
+            position: absolute;
+            left: 0;
+            font-size: 1.2em;
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            padding: 40px;
+        }
+
+        .nav-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border-color: #667eea;
+        }
+
+        .nav-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .nav-number {
+            display: inline-block;
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 12px;
+            text-align: center;
+            line-height: 45px;
+            font-weight: 700;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+
+        .nav-card h3 {
+            font-size: 1.4em;
+            color: #212529;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .nav-card p {
+            color: #6c757d;
+            line-height: 1.6;
+            font-size: 0.95em;
+        }
+
+        .nav-card .topics {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .topic-tag {
+            display: inline-block;
+            background: #f8f9fa;
+            color: #495057;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin: 4px 4px 4px 0;
+        }
+
+        .topic-tag.new {
+            background: #d3f9d8;
+            color: #2b8a3e;
+            font-weight: 600;
+        }
+
+        .footer {
+            background: #f8f9fa;
+            padding: 30px 40px;
+            text-align: center;
+            border-top: 3px solid #e9ecef;
+        }
+
+        .footer p {
+            color: #6c757d;
+            line-height: 1.8;
+            font-size: 0.95em;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .header .subtitle {
+                font-size: 1.1em;
+            }
+
+            .nav-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>⚡ Triples Energy</h1>
+            <div class="subtitle">Complete CRM & Sales Automation System</div>
+            <div class="version-badge">Version 2.0 - Tamil Nadu Market Optimized</div>
+        </div>
+
+        <div class="meta-info">
+            <div class="meta-grid">
+                <div class="meta-item">
+                    <div class="meta-label">Company:</div>
+                    <div class="meta-value">Tata Power Solar Dealer</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">CRM Platform:</div>
+                    <div class="meta-value">Zoho CRM</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">WhatsApp Tool:</div>
+                    <div class="meta-value">WATI</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">Market:</div>
+                    <div class="meta-value">Tamil Nadu (Residential | Commercial | Agricultural)</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">Language:</div>
+                    <div class="meta-value">Tanglish (Tamil + English)</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="philosophy-box">
+            <h3>🎯 Core Philosophy</h3>
+            <ul>
+                <li>80% Automation + 20% Human Touch</li>
+                <li>No lead dies without Team Leader approval</li>
+                <li>Every message designed for Tamil Nadu customer behavior</li>
+                <li>Simple reply options (1, 2, 3) instead of English keywords</li>
+                <li>Complete traceability of every interaction</li>
+            </ul>
+        </div>
+
+        <div class="nav-grid">
+            <a href="01-system-overview.html" style="text-decoration: none; color: inherit;">
+                <div class="nav-card">
+                    <div class="nav-number">01</div>
+                    <h3>System Overview & 5-Day Attempt</h3>
+                    <p>Core philosophy, objectives, and the structured 5-day initial contact system with mandatory TL review.</p>
+                    <div class="topics">
+                        <span class="topic-tag new">NEW: 5-Day System</span>
+                        <span class="topic-tag new">TL Approval Gates</span>
+                        <span class="topic-tag">Target Metrics</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="02-qualification-scoring.html" style="text-decoration: none; color: inherit;">
+                <div class="nav-card">
+                    <div class="nav-number">02</div>
+                    <h3>Lead Qualification & Scoring</h3>
+                    <p>8 detailed qualification questions with Tanglish call scripts and temperature classification system.</p>
+                    <div class="topics">
+                        <span class="topic-tag new">8 Questions</span>
+                        <span class="topic-tag new">Tanglish Scripts</span>
+                        <span class="topic-tag">Hot/Warm/Cold</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="03-stages-tasks.html" style="text-decoration: none; color: inherit;">
+                <div class="nav-card">
+                    <div class="nav-number">03</div>
+                    <h3>Lead Stages & Task Distribution</h3>
+                    <p>Complete stage flow with automated task creation: Hot (8 tasks/60 days), Warm (4 tasks/30 days), Cold (16 weeks).</p>
+                    <div class="topics">
+                        <span class="topic-tag new">Task Automation</span>
+                        <span class="topic-tag">Stage Rules</span>
+                        <span class="topic-tag">Movement Logic</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="04-whatsapp-initial.html" style="text-decoration: none; color: inherit;">
+                <div class="nav-card">
+                    <div class="nav-number">04</div>
+                    <h3>WhatsApp - Initial Sequences</h3>
+                    <p>5-Day attempt messages, Hot lead fast-track, Warm nurturing (30 days), and Cold long-term (16 weeks) - all in Tanglish.</p>
+                    <div class="topics">
+                        <span class="topic-tag new">Tanglish Messages</span>
+                        <span class="topic-tag new">1, 2, 3 Replies</span>
+                        <span class="topic-tag">Auto-triggers</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="05-whatsapp-objections.html" style="text-decoration: none; color: inherit;">
+                <div class="nav-card">
+                    <div class="nav-number">05</div>
+                    <h3>WhatsApp - Objection Nurturing</h3>
+                    <p>7 objection-specific tracks with 8-week nurturing: Price, EMI, Roof, Family, Subsidy, Timing, Competitor.</p>
+                    <div class="topics">
+                        <span class="topic-tag new">60-Day Tracks</span>
+                        <span class="topic-tag new">Objection-Based</span>
+                        <span class="topic-tag">8 Weekly Messages</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="06-consultation-proposal.html" style="text-decoration: none; color: inherit;">
+                <div class="nav-card">
+                    <div class="nav-number">06</div>
+                    <h3>Consultation & Proposal System</h3>
+                    <p>Booking flow, site visit protocols with photo requirements, proposal follow-up sequences, and outcome tracking.</p>
+                    <div class="topics">
+                        <span class="topic-tag">Site Assessment</span>
+                        <span class="topic-tag">Proposal Follow-up</span>
+                        <span class="topic-tag">14-Day Sequence</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="07-call-scripts.html" style="text-decoration: none; color: inherit;">
+                <div class="nav-card">
+                    <div class="nav-number">07</div>
+                    <h3>Call Scripts & Team Protocols</h3>
+                    <p>Complete Tanglish call scripts, daily task protocols for CRM Executive and BDM, and escalation triggers.</p>
+                    <div class="topics">
+                        <span class="topic-tag new">Tanglish Scripts</span>
+                        <span class="topic-tag">Team Structure</span>
+                        <span class="topic-tag">Daily Tasks</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="08-metrics-reporting.html" style="text-decoration: none; color: inherit;">
+                <div class="nav-card">
+                    <div class="nav-number">08</div>
+                    <h3>Metrics & Dashboards</h3>
+                    <p>Daily, weekly, and monthly KPIs, funnel visualization, conversion tracking, and loss analysis reports.</p>
+                    <div class="topics">
+                        <span class="topic-tag">Target: 8-12%</span>
+                        <span class="topic-tag">Funnel Analysis</span>
+                        <span class="topic-tag">Team Performance</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="09-automation-config.html" style="text-decoration: none; color: inherit;">
+                <div class="nav-card">
+                    <div class="nav-number">09</div>
+                    <h3>Automation & Configuration</h3>
+                    <p>Zoho workflow rules, WATI triggers, data field structure, tag system, and Team Leader approval gates configuration.</p>
+                    <div class="topics">
+                        <span class="topic-tag new">TL Gates</span>
+                        <span class="topic-tag">Workflow Rules</span>
+                        <span class="topic-tag">Field Structure</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="footer">
+            <p><strong>Document Version:</strong> 2.0 | <strong>Created:</strong> December 2024</p>
+            <p><strong>Prepared for:</strong> Triples Energy | <strong>Prepared by:</strong> Trade Minds Academy</p>
+            <p style="margin-top: 15px;"><strong>Market:</strong> Tamil Nadu - Culturally optimized messaging</p>
+            <div class="version-badge" style="margin-top: 15px;">Tamil Nadu Market Optimized</div>
+            <p style="margin-top: 20px; font-size: 0.9em;">
+                📋 Review quarterly based on conversion rates, market feedback, and system performance.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

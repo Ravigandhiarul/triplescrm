@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultation & Proposal System - Triples Energy V2.0</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #4c6ef5 0%, #5c7cfa 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4c6ef5 0%, #5c7cfa 100%);
+            color: white;
+            padding: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .nav-breadcrumb {
+            background: #f8f9fa;
+            padding: 15px 40px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .nav-breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .nav-breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 2em;
+            color: #1e3c72;
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #5c7cfa;
+            font-weight: 600;
+        }
+
+        .flow-box {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 2px solid #5c7cfa;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 25px 0;
+        }
+
+        .flow-step {
+            background: white;
+            border-left: 4px solid #5c7cfa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .flow-step h4 {
+            color: #4c6ef5;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .flow-step ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .flow-step li {
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+            color: #495057;
+        }
+
+        .flow-step li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #5c7cfa;
+            font-weight: bold;
+        }
+
+        .message-box {
+            background: linear-gradient(135deg, #d3f9d8 0%, #b2f2bb 100%);
+            border-left: 4px solid #51cf66;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .message-label {
+            background: #20c997;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.95em;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .message-text {
+            background: white;
+            border: 1px solid #b2f2bb;
+            border-radius: 10px;
+            padding: 20px;
+            line-height: 1.8;
+            color: #212529;
+            white-space: pre-line;
+            font-size: 1.05em;
+        }
+
+        .message-text .variable {
+            background: #fff3bf;
+            color: #856404;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .assessment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .assessment-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .assessment-card h4 {
+            color: #4c6ef5;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .assessment-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .assessment-card li {
+            padding: 6px 0;
+            color: #495057;
+            font-size: 0.95em;
+        }
+
+        .proposal-content {
+            background: #e7f5ff;
+            border: 2px solid #74c0fc;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .proposal-content h4 {
+            color: #1971c2;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .proposal-content ol {
+            padding-left: 20px;
+            color: #1864ab;
+        }
+
+        .proposal-content li {
+            padding: 6px 0;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            padding: 30px 40px;
+            background: #f8f9fa;
+            border-top: 2px solid #e9ecef;
+        }
+
+        .nav-button {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .assessment-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📞 Consultation & Proposal System</h1>
+            <div class="subtitle">Section 06: Booking Flow, Site Visit Protocols & Proposal Follow-up</div>
+        </div>
+
+        <div class="nav-breadcrumb">
+            <a href="index.html">← Back to Index</a> | <a href="05-whatsapp-objections.html">← Previous: WhatsApp Objection Nurturing</a>
+        </div>
+
+        <div class="content">
+            <!-- Consultation System -->
+            <div class="section">
+                <h2 class="section-title">Consultation Booking Flow</h2>
+
+                <div class="flow-box">
+                    <div class="flow-step">
+                        <h4>Step 1: Booking</h4>
+                        <ul>
+                            <li>Trigger: BDM/CRM clicks "Book Consultation"</li>
+                            <li>Required fields: Date, Time slot, Mode (Phone/Video/In-person), Notes</li>
+                            <li>Auto-actions: Calendar event created, Customer WhatsApp sent, BDM task created, TL notified</li>
+                        </ul>
+                    </div>
+
+                    <div class="flow-step">
+                        <h4>Step 2: Reminders</h4>
+                        <ul>
+                            <li>24 hours before: WhatsApp reminder to customer + Email reminder to BDM</li>
+                            <li>2 hours before: Final WhatsApp to customer + Push notification to BDM</li>
+                        </ul>
+                    </div>
+
+                    <div class="flow-step">
+                        <h4>Step 3: Consultation Completion</h4>
+                        <ul>
+                            <li>BDM marks "Consultation Done"</li>
+                            <li>Required inputs: Duration, Customer Interest Level, Site Visit Required?, Key Discussion Points</li>
+                            <li>If site visit required: Create site visit task</li>
+                            <li>If no site visit: Proceed to proposal or nurturing</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 style="color: #4c6ef5; margin: 30px 0 20px 0; font-weight: 600;">Consultation WhatsApp Messages</h3>
+
+                <div class="message-box">
+                    <div class="message-label">MESSAGE CO1 - Booking Confirmation</div>
+                    <div class="message-text"><span class="variable">{Name}</span>, consultation confirmed! ✅
+
+📅 <span class="variable">{Date}</span>
+⏰ <span class="variable">{Time}</span>
+📞 நம்ம team call பண்றோம்
+
+Discuss பண்ணப்போறது:
+• உங்க current EB usage
+• Best system recommendation
+• Pricing & EMI options
+• Subsidy eligibility
+
+Time change வேணுமா?
+👉 Reschedule - 1</div>
+                </div>
+
+                <div class="message-box">
+                    <div class="message-label">MESSAGE CO2 - 24 Hour Reminder</div>
+                    <div class="message-text"><span class="variable">{Name}</span>, reminder 🔔
+
+நாளைக்கு consultation:
+📅 <span class="variable">{Date}</span> 
+⏰ <span class="variable">{Time}</span>
+
+Ready-ஆ இருங்க, recent EB bill கையில வச்சுக்கோங்க.
+
+Reschedule-ஆ?
+👉 1 - வேற time வேணும்</div>
+                </div>
+
+                <div class="message-box">
+                    <div class="message-label">MESSAGE CO3 - 2 Hour Reminder</div>
+                    <div class="message-text"><span class="variable">{Name}</span>, 2 hours-ல call வரும் 📞
+
+EB bill ready-ஆ?
+
+சீக்கிரம் பேசலாம்! ☀️</div>
+                </div>
+            </div>
+
+            <!-- Site Visit System -->
+            <div class="section">
+                <h2 class="section-title">Site Visit System</h2>
+
+                <div style="background: #fff3bf; border-left: 4px solid #ffd43b; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
+                    <h4 style="color: #856404; margin-bottom: 10px; font-weight: 600;">Booking</h4>
+                    <p style="color: #856404;"><strong>Trigger:</strong> Consultation done + Site visit required<br>
+                    <strong>Assigned to:</strong> BDM based on area/pincode<br>
+                    <strong>Timeline:</strong> Within 3 days of consultation</p>
+                </div>
+
+                <h3 style="color: #4c6ef5; margin: 30px 0 20px 0; font-weight: 600;">During Visit - Mandatory Captures</h3>
+
+                <div class="assessment-grid">
+                    <div class="assessment-card">
+                        <h4>1. Site Photos (min 3)</h4>
+                        <ul>
+                            <li>• Roof/terrace photo</li>
+                            <li>• Electrical panel photo</li>
+                            <li>• Available space photo</li>
+                        </ul>
+                    </div>
+
+                    <div class="assessment-card">
+                        <h4>2. Site Assessment Form</h4>
+                        <ul>
+                            <li>• Roof type (RCC/Sheet/Tile)</li>
+                            <li>• Roof condition</li>
+                            <li>• Available area (sqft)</li>
+                            <li>• Shade analysis</li>
+                            <li>• Electrical phase</li>
+                            <li>• Structure strength</li>
+                            <li>• Any obstacles</li>
+                        </ul>
+                    </div>
+
+                    <div class="assessment-card">
+                        <h4>3. Customer Interaction</h4>
+                        <ul>
+                            <li>• Who was present</li>
+                            <li>• Questions asked</li>
+                            <li>• Concerns raised</li>
+                            <li>• Interest level observation</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h4 style="color: #4c6ef5; margin: 25px 0 15px 0; font-weight: 600;">Post Visit - BDM Actions</h4>
+                <div style="background: #e7f5ff; border-radius: 8px; padding: 20px;">
+                    <ol style="color: #1864ab; padding-left: 20px;">
+                        <li>Upload all photos to CRM (within 2 hours)</li>
+                        <li>Complete site assessment form</li>
+                        <li>Select Customer Impression: Loved It / Okay / Disappointed / Couldn't Assess</li>
+                        <li>Capture Objections (if any)</li>
+                        <li>Recommend system size</li>
+                        <li>Mark "Site Visit Completed"</li>
+                    </ol>
+                </div>
+
+                <h3 style="color: #4c6ef5; margin: 30px 0 20px 0; font-weight: 600;">Site Visit WhatsApp Messages</h3>
+
+                <div class="message-box">
+                    <div class="message-label">MESSAGE SV1 - Booking Confirmation</div>
+                    <div class="message-text"><span class="variable">{Name}</span>, site visit confirmed! 🏠
+
+📅 <span class="variable">{Date}</span>
+⏰ <span class="variable">{Time}</span>  
+👤 <span class="variable">{BDMName}</span> வருவாங்க
+
+Visit-ல பாக்கப்போறது:
+• Roof assessment
+• Space measurement
+• Best placement suggestion
+
+Address confirm பண்ணுங்க:
+<span class="variable">{Address}</span>
+
+சரியா? 
+👉 ஆமா - 1
+👉 Address change - 2</div>
+                </div>
+
+                <div class="message-box">
+                    <div class="message-label">MESSAGE SV2 - Day Before Reminder</div>
+                    <div class="message-text"><span class="variable">{Name}</span>, நாளைக்கு site visit 🔔
+
+📅 <span class="variable">{Date}</span>
+⏰ <span class="variable">{Time}</span>
+👤 <span class="variable">{BDMName}</span>: <span class="variable">{BDMPhone}</span>
+
+Please ensure:
+✅ Roof/terrace access
+✅ Recent EB bill copy
+✅ 20-30 mins time
+
+Reschedule-ஆ?
+👉 1 - வேற date வேணும்</div>
+                </div>
+
+                <div class="message-box">
+                    <div class="message-label">MESSAGE SV3 - Post Visit Thank You</div>
+                    <div class="message-text"><span class="variable">{Name}</span>, visit-க்கு நன்றி! 🙏
+
+Assessment complete ஆச்சு.
+
+24 hours-ல customized proposal share பண்றோம்:
+• System recommendation
+• Exact pricing
+• Savings calculation
+• EMI options
+
+Questions இருந்தா message பண்ணுங்க!</div>
+                </div>
+            </div>
+
+            <!-- Proposal System -->
+            <div class="section">
+                <h2 class="section-title">Proposal System & Follow-up</h2>
+
+                <div class="proposal-content">
+                    <h4>Proposal Document Contents</h4>
+                    <ol>
+                        <li>Customer details</li>
+                        <li>Site assessment summary</li>
+                        <li>Recommended system specifications</li>
+                        <li>Pricing breakdown</li>
+                        <li>Subsidy details</li>
+                        <li>EMI calculator</li>
+                        <li>ROI analysis</li>
+                        <li>Warranty information</li>
+                        <li>Company credentials</li>
+                        <li>Terms & conditions</li>
+                        <li>Validity period</li>
+                    </ol>
+                </div>
+
+                <h3 style="color: #4c6ef5; margin: 30px 0 20px 0; font-weight: 600;">Proposal Follow-up Sequence (14 Days)</h3>
+
+                <div class="message-box">
+                    <div class="message-label">MESSAGE PR1 - Day 0 (Proposal Delivery)</div>
+                    <div class="message-text"><span class="variable">{Name}</span>, proposal ready! 📄
+
+<span class="variable">{ProposalPDFLink}</span>
+
+உங்களுக்கான recommendation:
+⚡ System: <span class="variable">{Size}</span> kW
+💰 Price: ₹<span class="variable">{Price}</span>
+💰 After subsidy: ₹<span class="variable">{NetPrice}</span>
+💳 EMI: ₹<span class="variable">{EMI}</span>/month
+📊 Monthly savings: ₹<span class="variable">{Savings}</span>
+📅 Payback: <span class="variable">{Years}</span> years
+
+பாருங்க, doubt இருந்தா call பண்றேன்.
+👉 Discuss பண்ணணும் - 1
+
+📞 <span class="variable">{BDMPhone}</span> - <span class="variable">{BDMName}</span></div>
+                </div>
+
+                <div class="message-box">
+                    <div class="message-label">MESSAGE PR2 - Day 1 (Key Points)</div>
+                    <div class="message-text"><span class="variable">{Name}</span>, proposal பாத்தீங்களா?
+
+Key points:
+✅ Investment: ₹<span class="variable">{NetPrice}</span>
+✅ Monthly savings: ₹<span class="variable">{Savings}</span>
+✅ <span class="variable">{Years}</span> years-ல full recovery
+✅ அப்புறம் FREE electricity!
+
+25 years-ல total savings: ₹<span class="variable">{TotalSavings}</span> 💰
+
+Questions-க்கு 1 அனுப்புங்க.</div>
+                </div>
+
+                <div class="message-box">
+                    <div class="message-label">MESSAGE PR3 - Day 3 (EMI Focus)</div>
+                    <div class="message-text"><span class="variable">{Name}</span>, EMI யோசிக்குறீங்களா?
+
+See this:
+Current EB bill: ₹<span class="variable">{EBBill}</span>/month
+Solar EMI: ₹<span class="variable">{EMI}</span>/month
+Difference: ₹<span class="variable">{Diff}</span> only!
+
+<span class="variable">{EMITenure}</span> months-ல EMI முடியும்.
+அப்புறம் ₹<span class="variable">{EBBill}</span> full savings!
+
+EMI details discuss பண்ணலாமா?
+👉 ஆமா - 1</div>
+                </div>
+
+                <div class="message-box">
+                    <div class="message-label">MESSAGE PR4 - Day 5 (Objection Handling)</div>
+                    <div class="message-text"><span class="variable">{Name}</span>, சில customers கேக்கும் questions:
+
+❓ "மழை/cloudy-ல work ஆகுமா?"
+→ ஆமா, daylight போதும். 10-20% less generation மட்டுமே.
+
+❓ "Maintenance?"
+→ Minimal. 6 months-க்கு ஒரு தடவை cleaning. நாங்க support தருவோம்.
+
+❓ "Company reliable-ஆ?"
+→ Tata Power Solar - 35 years experience, India's #1
+
+வேற doubt இருந்தா கேளுங்க 👉 1</div>
+                </div>
+
+                <div class="message-box">
+                    <div class="message-label">MESSAGE PR5 - Day 7 (Urgency)</div>
+                    <div class="message-text"><span class="variable">{Name}</span>, reminder 🔔
+
+⚠️ Proposal valid till: <span class="variable">{ValidityDate}</span>
+⚠️ Current subsidy rates may change
+⚠️ Installation slots filling fast
+
+Proceed பண்ணணுமா?
+👉 ஆமா, book பண்ணுங்க - 1
+👉 இன்னும் யோசிக்கணும் - 2
+👉 வேண்டாம் - 3
+
+📞 <span class="variable">{BDMName}</span>: <span class="variable">{BDMPhone}</span></div>
+                </div>
+
+                <div class="message-box">
+                    <div class="message-label">MESSAGE PR6 - Day 10 (Manager Connect)</div>
+                    <div class="message-text"><span class="variable">{Name}</span>, நான் <span class="variable">{ManagerName}</span>, Sales Manager 🙏
+
+<span class="variable">{BDMName}</span> சொன்னாங்க proposal பத்தி discuss பண்றீங்கன்னு.
+
+Personally help பண்ண விரும்புறேன்.
+
+10 mins call போதும், best deal ensure பண்றேன்.
+
+Call பண்ணட்டுமா?
+👉 ஆமா - 1
+👉 எனக்கு convenient time: (reply பண்ணுங்க)</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <a href="05-whatsapp-objections.html" class="nav-button">← Previous: WhatsApp Objection Nurturing</a>
+            <a href="07-call-scripts.html" class="nav-button">Next: Call Scripts & Team Protocols →</a>
+        </div>
+    </div>
+</body>
+</html>
